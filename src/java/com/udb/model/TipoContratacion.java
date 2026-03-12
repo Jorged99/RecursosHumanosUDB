@@ -1,9 +1,9 @@
 package com.udb.model;
 
 public class TipoContratacion {
+    
     private int idTipoContratacion;
     private String tipoContratacion;
-    // Generar getters y setters
 
     public int getIdTipoContratacion() {
         return idTipoContratacion;
