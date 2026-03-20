@@ -1,11 +1,14 @@
 # RecursosHumanosUDB
 La Universidad Don Bosco, solicita a usted y su grupo de desarrolladores, la creación de un sistema web, que permita gestionar el recurso humano que trabaja dentro de la institución. 
 
-## Netbeans 25 y jdk 21 para este proyecto
+* **Desarrolladores:**
+* 1
+* 2
+* 3
+* 4
+  
+## Netbeans 25 y JDK 21 para este proyecto
 
-## link de descarga payara 7
-
-https://payara.fish/downloads/payara-platform-community-edition/?_gl=1*1b5cjdx*_gcl_au*MzExMzYwNzQ0LjE3NzMxMDI1MDg.*_ga*MTk0MjMyODY1MC4xNzczMTAyNTA5*_ga_N1E0KM13LP*czE3NzMxMDI1MDgkbzEkZzEkdDE3NzMxMDI2ODAkajU5JGwwJGgyODA0NzUzMjU.
 
 # Sistema de Gestión de Recursos Humanos (RRHH UDB) 💼
 
@@ -73,4 +76,6 @@ El sistema se rige por operaciones estandarizadas. Ejemplo del flujo en el módu
 1.  Clonar el repositorio.
 2.  Importar la base de datos `rrhh_udb2.sql` en MySQL.
 3.  Configurar la conexión JDBC en la clase de conexión del proyecto.
-4.  Desplegar en un servidor de aplicaciones compatible con Jakarta EE (como GlassFish o Payara) desde Netbeans.
+     * Usuario: root
+     * contraseña: ""
+5.  Desplegar en **Payara7** desde Netbeans. [Descargar aqui]([https://www.udb.edu.sv](https://payara.fish/downloads/payara-platform-community-edition/?utm_campaign=community_project&utm_source=payara.org&utm_medium=referral&utm_content=awareness_community_webpage_&utm_term=payara_community))
