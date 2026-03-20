@@ -83,3 +83,4 @@ El sistema se rige por operaciones estandarizadas. Ejemplo del flujo en el módu
      * Usuario: root
      * contraseña: ""
 5.  Desplegar en **Payara7** desde Netbeans. [Descargar aqui](https://www.udb.edu.sv](https://payara.fish/downloads/payara-platform-community-edition/?utm_campaign=community_project&utm_source=payara.org&utm_medium=referral&utm_content=awareness_community_webpage_&utm_term=payara_community))
+6.  Si el proyecto se compila en netbeans pero no abre el localhost, abrir la ruta siguiente: C:\payara7\glassfish\bin luego abrir el CMD y desde esa ruta, colocar el comando: asadmin start-domain - Ya que payara puede arrojar el problema que no tiene permisos de abrir desde netbeans
