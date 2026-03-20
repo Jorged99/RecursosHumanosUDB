@@ -9,7 +9,6 @@ import java.util.List;
 public class CargoDAO {
 
     public boolean insertar(Cargo cargo) {
-
         String sql = "INSERT INTO Cargos (cargo, descripcionCargo, jefatura) VALUES (?, ?, ?)";
 
         try (Connection con = Conexion.getConnection();
@@ -28,7 +27,6 @@ public class CargoDAO {
     }
 
     public List<Cargo> listar() {
-
         List<Cargo> lista = new ArrayList<>();
         String sql = "SELECT * FROM Cargos";
 
@@ -37,14 +35,11 @@ public class CargoDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-
                 Cargo c = new Cargo();
-
                 c.setIdCargo(rs.getInt("idCargo"));
                 c.setCargo(rs.getString("cargo"));
                 c.setDescripcionCargo(rs.getString("descripcionCargo"));
                 c.setJefatura(rs.getBoolean("jefatura"));
-
                 lista.add(c);
             }
 
@@ -55,27 +50,8 @@ public class CargoDAO {
         return lista;
     }
 
-    public boolean eliminar(int id) {
-
-        String sql = "DELETE FROM Cargos WHERE idCargo = ?";
-
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setInt(1, id);
-
-            return ps.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar cargo: " + e.getMessage());
-            return false;
-        }
-    }
-
     public Cargo obtenerPorId(int id) {
-
         Cargo c = null;
-
         String sql = "SELECT * FROM Cargos WHERE idCargo = ?";
 
         try (Connection con = Conexion.getConnection();
@@ -84,11 +60,8 @@ public class CargoDAO {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
-
                 if (rs.next()) {
-
                     c = new Cargo();
-
                     c.setIdCargo(rs.getInt("idCargo"));
                     c.setCargo(rs.getString("cargo"));
                     c.setDescripcionCargo(rs.getString("descripcionCargo"));
@@ -104,8 +77,7 @@ public class CargoDAO {
     }
 
     public boolean actualizar(Cargo cargo) {
-
-        String sql = "UPDATE Cargos SET cargo=?, descripcionCargo=?, jefatura=? WHERE idCargo=?";
+        String sql = "UPDATE Cargos SET cargo = ?, descripcionCargo = ?, jefatura = ? WHERE idCargo = ?";
 
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -119,6 +91,21 @@ public class CargoDAO {
 
         } catch (SQLException e) {
             System.out.println("Error al actualizar cargo: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean eliminar(int id) {
+        String sql = "DELETE FROM Cargos WHERE idCargo = ?";
+
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar cargo: " + e.getMessage());
             return false;
         }
     }

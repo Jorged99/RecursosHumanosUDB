@@ -16,75 +16,106 @@ public class EmpleadoServlet extends HttpServlet {
 
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
 
-    /**
-     * Método unificado para peticiones GET y POST.
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String accion = request.getParameter("accion");
-        if (accion == null) { accion = "listar"; }
 
-        try {
-            switch (accion) {
-                case "listar":
-                    listarEmpleados(request, response);
-                    break;
-                case "agregar":
-                    agregarEmpleado(request, response);
-                    break;
-                default:
-                    listarEmpleados(request, response);
-                    break;
-            }
-        } catch (Exception e) {
-            throw new ServletException("Error procesando solicitud", e);
+        String accion = request.getParameter("accion");
+        if (accion == null) {
+            accion = "listar";
+        }
+
+        switch (accion) {
+            case "listar":
+                listarEmpleados(request, response);
+                break;
+
+            case "editar":
+                editarEmpleado(request, response);
+                break;
+
+            case "eliminar":
+                eliminarEmpleado(request, response);
+                break;
+
+            default:
+                listarEmpleados(request, response);
+                break;
         }
     }
 
-    private void listarEmpleados(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Empleado> lista = empleadoDAO.listarEmpleados();
-        request.setAttribute("listaEmpleados", lista); // Enviamos la lista a la vista
-        request.getRequestDispatcher("empleados.jsp").forward(request, response);
-    }
 
-    private void agregarEmpleado(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         try {
-            // Validaciones del lado del servidor
+            String idStr = request.getParameter("idEmpleado");
             String dui = request.getParameter("dui");
-            if(dui == null || dui.length() != 9) {
-                request.setAttribute("error", "DUI inválido.");
+            String nombre = request.getParameter("nombre");
+            String usuario = request.getParameter("usuario");
+            String telefono = request.getParameter("telefono");
+            String correo = request.getParameter("correo");
+            String fechaNacimientoStr = request.getParameter("fechaNacimiento");
+
+            if (dui == null || dui.length() != 9) {
+                request.setAttribute("error", "DUI inválido. Debe contener 9 dígitos.");
                 listarEmpleados(request, response);
                 return;
             }
 
             Empleado emp = new Empleado();
             emp.setNumeroDui(dui);
-            emp.setNombrePersona(request.getParameter("nombre"));
-            emp.setUsuario(request.getParameter("usuario"));
-            emp.setNumeroTelefono(request.getParameter("telefono"));
-            emp.setCorreoInstitucional(request.getParameter("correo"));
-            emp.setFechaNacimiento(Date.valueOf(request.getParameter("fechaNacimiento")));
+            emp.setNombrePersona(nombre);
+            emp.setUsuario(usuario);
+            emp.setNumeroTelefono(telefono);
+            emp.setCorreoInstitucional(correo);
+            emp.setFechaNacimiento(Date.valueOf(fechaNacimientoStr));
 
-            empleadoDAO.agregarEmpleado(emp);
-            response.sendRedirect("EmpleadoServlet?accion=listar"); // Redirección tras POST exitoso (PRG pattern)
+            if (idStr == null || idStr.isEmpty()) {
+                empleadoDAO.insertar(emp);
+            } else {
+                emp.setIdEmpleado(Integer.parseInt(idStr));
+                empleadoDAO.actualizar(emp);
+            }
+
+            response.sendRedirect("EmpleadoServlet?accion=listar");
+
         } catch (IllegalArgumentException e) {
-             request.setAttribute("error", "Formato de fecha inválido.");
-             listarEmpleados(request, response);
+            request.setAttribute("error", "Formato de fecha inválido.");
+            listarEmpleados(request, response);
+        } catch (Exception e) {
+            throw new ServletException("Error al guardar empleado", e);
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    private void listarEmpleados(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        List<Empleado> lista = empleadoDAO.listar();
+        request.setAttribute("listaEmpleados", lista);
+        request.getRequestDispatcher("empleados.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    private void editarEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        Empleado emp = empleadoDAO.obtenerPorId(id);
+
+        request.setAttribute("empleadoEditar", emp);
+
+        List<Empleado> lista = empleadoDAO.listar();
+        request.setAttribute("listaEmpleados", lista);
+
+        request.getRequestDispatcher("empleados.jsp").forward(request, response);
+    }
+
+    private void eliminarEmpleado(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        empleadoDAO.eliminar(id);
+
+        response.sendRedirect("EmpleadoServlet?accion=listar");
     }
 }

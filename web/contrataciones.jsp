@@ -7,7 +7,9 @@
     <title>Módulo de Contrataciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">RRHH UDB</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.jsp">Inicio</a>
+                        <a class="nav-link active" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="EmpleadoServlet?accion=listar">Empleados</a>
@@ -37,7 +39,6 @@
             </div>
         </div>
     </nav>
-<body class="bg-light">
 
     <div class="container mt-5">
         <h2 class="text-center mb-4">Gestión de Contrataciones</h2>
@@ -86,6 +87,7 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <label class="form-label text-muted text-sm">Fecha de Contrato</label>
@@ -108,7 +110,7 @@
                 Listado Oficial de Contrataciones
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover table-striped mb-0 text-center">
+                <table class="table table-hover table-striped align-middle mb-0 text-center">
                     <thead class="table-dark text-secondary">
                         <tr>
                             <th>ID</th>
@@ -119,6 +121,7 @@
                             <th>Fecha</th>
                             <th>Salario</th>
                             <th>Estado</th>
+                            <th style="width: 70px;">🗑️</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -141,6 +144,14 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
+                                <td class="text-center">
+                                    <a href="ContratacionServlet?accion=eliminar&id=${c.idContratacion}"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Eliminar"
+                                       onclick="return confirm('¿Deseas eliminar esta contratación?')">
+                                        🗑️
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -148,5 +159,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

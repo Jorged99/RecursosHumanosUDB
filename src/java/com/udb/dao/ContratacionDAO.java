@@ -31,25 +31,21 @@ public class ContratacionDAO {
                 c.setSalario(rs.getDouble("salario"));
                 c.setEstado(rs.getBoolean("estado"));
 
-                // Llenar el objeto Empleado interno
                 Empleado emp = new Empleado();
                 emp.setIdEmpleado(rs.getInt("idEmpleado"));
                 emp.setNombrePersona(rs.getString("nombrePersona"));
                 c.setEmpleado(emp);
 
-                // Llenar el objeto Departamento interno
                 Departamento depto = new Departamento();
                 depto.setIdDepartamento(rs.getInt("idDepartamento"));
                 depto.setNombreDepartamento(rs.getString("nombreDepartamento"));
                 c.setDepartamento(depto);
 
-                // Llenar el objeto Cargo interno
                 Cargo cargo = new Cargo();
                 cargo.setIdCargo(rs.getInt("idCargo"));
                 cargo.setCargo(rs.getString("cargo"));
                 c.setCargo(cargo);
 
-                // Llenar el objeto TipoContratacion interno
                 TipoContratacion tipo = new TipoContratacion();
                 tipo.setIdTipoContratacion(rs.getInt("idTipoContratacion"));
                 tipo.setTipoContratacion(rs.getString("tipoContratacion"));
@@ -79,6 +75,21 @@ public class ContratacionDAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error agregar contratacion: " + e.getMessage());
+        }
+    }
+
+    public boolean eliminar(int id) {
+        String sql = "DELETE FROM Contrataciones WHERE idContratacion = ?";
+
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error eliminar contratacion: " + e.getMessage());
+            return false;
         }
     }
 }

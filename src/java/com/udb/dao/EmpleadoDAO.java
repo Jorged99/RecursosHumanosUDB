@@ -63,4 +63,81 @@ public class EmpleadoDAO {
         }
         return rowInserted;
     }
+    
+    public Empleado obtenerPorId(int id) {
+    Empleado emp = null;
+    String sql = "SELECT * FROM Empleados WHERE idEmpleado=?";
+
+    try (Connection con = Conexion.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            emp = new Empleado();
+            emp.setIdEmpleado(rs.getInt("idEmpleado"));
+            emp.setNumeroDui(rs.getString("numeroDui"));
+            emp.setNombrePersona(rs.getString("nombrePersona"));
+            emp.setUsuario(rs.getString("usuario"));
+            emp.setNumeroTelefono(rs.getString("numeroTelefono"));
+            emp.setCorreoInstitucional(rs.getString("correoInstitucional"));
+            emp.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return emp;
+}
+    
+    public boolean actualizar(Empleado emp) {
+    String sql = "UPDATE Empleados SET numeroDui=?, nombrePersona=?, usuario=?, numeroTelefono=?, correoInstitucional=?, fechaNacimiento=? WHERE idEmpleado=?";
+
+    try (Connection con = Conexion.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, emp.getNumeroDui());
+        ps.setString(2, emp.getNombrePersona());
+        ps.setString(3, emp.getUsuario());
+        ps.setString(4, emp.getNumeroTelefono());
+        ps.setString(5, emp.getCorreoInstitucional());
+        ps.setDate(6, emp.getFechaNacimiento());
+        ps.setInt(7, emp.getIdEmpleado());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    
+    public boolean eliminar(int id) {
+    String sql = "DELETE FROM Empleados WHERE idEmpleado=?";
+
+    try (Connection con = Conexion.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, id);
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    
+    // ====== MÉTODOS ADAPTADOS PARA EL SERVLET ======
+
+public List<Empleado> listar() {
+    return listarEmpleados();
+}
+
+public boolean insertar(Empleado emp) {
+    return agregarEmpleado(emp);
+}
+    
+    
 }
