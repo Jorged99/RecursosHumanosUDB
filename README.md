@@ -9,6 +9,10 @@ La Universidad Don Bosco, solicita a usted y su grupo de desarrolladores, la cre
   
 ## Netbeans 25 y JDK 21 para este proyecto
 
+<img width="1892" height="873" alt="image" src="https://github.com/user-attachments/assets/f3947d9a-5541-4d2d-b556-aacd8ef31f2c" />
+br
+br
+<img width="1882" height="868" alt="image" src="https://github.com/user-attachments/assets/bac8fb5e-6bfa-49e5-aede-50973a1532fa" />
 
 # Sistema de Gestión de Recursos Humanos (RRHH UDB) 💼
 
@@ -78,4 +82,4 @@ El sistema se rige por operaciones estandarizadas. Ejemplo del flujo en el módu
 3.  Configurar la conexión JDBC en la clase de conexión del proyecto.
      * Usuario: root
      * contraseña: ""
-5.  Desplegar en **Payara7** desde Netbeans. [Descargar aqui]([https://www.udb.edu.sv](https://payara.fish/downloads/payara-platform-community-edition/?utm_campaign=community_project&utm_source=payara.org&utm_medium=referral&utm_content=awareness_community_webpage_&utm_term=payara_community))
+5.  Desplegar en **Payara7** desde Netbeans. [Descargar aqui](https://www.udb.edu.sv](https://payara.fish/downloads/payara-platform-community-edition/?utm_campaign=community_project&utm_source=payara.org&utm_medium=referral&utm_content=awareness_community_webpage_&utm_term=payara_community))
