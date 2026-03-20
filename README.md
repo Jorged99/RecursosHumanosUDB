@@ -9,22 +9,17 @@ La Universidad Don Bosco, solicita a usted y su grupo de desarrolladores, la cre
   
 ## Netbeans 25 y JDK 21 para este proyecto
 
+Index 
 <img width="1892" height="873" alt="image" src="https://github.com/user-attachments/assets/f3947d9a-5541-4d2d-b556-aacd8ef31f2c" />
-br
-br
+
 <img width="1882" height="868" alt="image" src="https://github.com/user-attachments/assets/bac8fb5e-6bfa-49e5-aede-50973a1532fa" />
 
-# Sistema de Gestión de Recursos Humanos (RRHH UDB) 💼
+# Sistema de Gestión de Recursos Humanos (RRHH UDB) 
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Jakarta EE](https://img.shields.io/badge/Jakarta_EE-001439?style=for-the-badge&logo=eclipse-ide&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-## 📝 Descripción del Proyecto
+##  Descripción del Proyecto
 El **Sistema de Recursos Humanos (RRHH UDB)** es una aplicación web diseñada para gestionar integralmente el ciclo de vida laboral del personal de la Universidad Don Bosco. Desarrollado con herramientas nativas de **Java Netbeans** y la plataforma **Jakarta EE**, el sistema centraliza la administración de empleados, departamentos, cargos y tipos de contratación en un módulo robusto de "Contrataciones".
 
-## 🏛️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 El proyecto implementa el **Patrón de Diseño MVC (Modelo-Vista-Controlador)**, lo que permite una separación clara de responsabilidades:
 
 * **Vista:** Interfaz de usuario dinámica desarrollada con **JSP** y estilizada con **Bootstrap**.
@@ -33,7 +28,7 @@ El proyecto implementa el **Patrón de Diseño MVC (Modelo-Vista-Controlador)**,
 
 ---
 
-## 🗄️ Estructura de la Base de Datos
+## Estructura de la Base de Datos
 El sistema utiliza una base de datos relacional en **MySQL** (`rrhh_udb2`) altamente normalizada.
 
 ### 1. Tablas de Catálogo (Independientes)
@@ -47,7 +42,7 @@ El sistema utiliza una base de datos relacional en **MySQL** (`rrhh_udb2`) altam
 
 ---
 
-## 📂 Organización del Código (Paquetes)
+## Organización del Código (Paquetes)
 
 ### `com.udb.model` (Capa de Modelo)
 * **Clases Base:** Entidades simples como `Empleado.java`, `Cargo.java`, etc.
@@ -63,7 +58,7 @@ Centraliza la comunicación con MySQL.
 
 ---
 
-## 🛠️ Métodos Principales y Flujo CRUD
+## Métodos Principales y Flujo CRUD
 
 El sistema se rige por operaciones estandarizadas. Ejemplo del flujo en el módulo de **Contrataciones**:
 
