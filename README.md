@@ -2,10 +2,11 @@
 La Universidad Don Bosco, solicita a usted y su grupo de desarrolladores, la creación de un sistema web, que permita gestionar el recurso humano que trabaja dentro de la institución. 
 
 * **Desarrolladores:**
-* 1
-* 2
-* 3
-* 4
+* 1 Jorge Alberto Diaz Duran - DD242312 
+* 2 Jehudi Neftalí Aguilar Araujo - AA251259
+* 3 Diego Carlos Nochez Gallardo - NG182827
+* 4 Nelson Elías Henríquez Chávez - HC252054
+* 5  Jimmy Royer Melendez Pineda - MP251278
   
 ## Netbeans 25 y JDK 21 para este proyecto
 
